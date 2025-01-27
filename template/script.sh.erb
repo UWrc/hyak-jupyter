@@ -19,4 +19,4 @@ nvflag="--nv"
 
 # Launch the Jupyter Notebook Server
 set -x
-apptainer exec ${nvflag} ${sif} jupyter ${ui} --config="${CONFIG_FILE}" ${extra_args}
+apptainer exec ${nvflag} ${sif} jupyter ${ui} --config="${CONFIG_FILE}" ${extra_args} --NotebookApp.root_dir=$HOME
