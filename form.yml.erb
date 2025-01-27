@@ -73,7 +73,11 @@ attributes:
       - [ "None", "none", data-set-hgpus: 0, data-hide-hgpus: true ]
       - [ "Any", "", data-set-hgpus: 0 ]
       <%- ckptgpus.each do |k, v| -%>
-      - [ "<%= v %>", "<%= k %>" ]
+      - [ "<%= v %>", "<%= k %>",
+        <%- if k == "l40s" -%>
+        data-option-for-hqueue-ckpt: "false",
+        <%- end -%>
+        ]
       <%- end -%>
   hgpus:
     label: GPUs
