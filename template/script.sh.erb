@@ -19,4 +19,13 @@ nvflag="--nv"
 
 # Launch the Jupyter Notebook Server
 set -x
-apptainer exec ${nvflag} ${sif} jupyter ${ui} --config="${CONFIG_FILE}" ${extra_args}
+
+if [[ $sif == "none" ]]; then
+	__conda_setup="$('/mmfs1/sw/ondemand/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+        eval "$__conda_setup"
+        conda activate /mmfs1/sw/ondemand/condaenv
+	jupyter ${ui} --config="${CONFIG_FILE}" ${extra_args}
+else
+	apptainer exec ${nvflag} ${sif} jupyter ${ui} --config="${CONFIG_FILE}" ${extra_args}
+fi
+
