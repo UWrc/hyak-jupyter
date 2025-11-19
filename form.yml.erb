@@ -90,31 +90,31 @@ attributes:
     max: 8
     value: 0
   sif:
-    label: Jupyter Container
+    label: Server Environment
     widget: select
-    help: Select 'Custom' if you have created your own Jupyter-Apptainer image.
+    help: Select 'Custom Container' if you have created your own Jupyter-Apptainer image.
     options:
     - [
-        "jupyter/minimal-notebook",
+        "Container: minimal-notebook",
         "/mmfs1/sw/ondemand/containers/jupyter/minimal-notebook",
         data-hide-custom-sif: true
       ]
     - [
-        "jupyter/scipy-notebook",
+        "Container: scipy-notebook",
         "/mmfs1/sw/ondemand/containers/jupyter/scipy-notebook",
         data-hide-custom-sif: true
       ]
     - [
-        "jupyter/datascience-notebook",
+        "Container: datascience-notebook",
         "/mmfs1/sw/ondemand/containers/jupyter/datascience-notebook",
         data-hide-custom-sif: true
         ]
     - [
-        "None",
-        "none",
+        "Module",
+        "module",
         data-hide-custom-sif: true
         ]
-    - [ "Custom", "" ]
+    - [ "Custom Container", "" ]
     value: "Default"
   custom_sif:
     label: Full path to your customized Jupyter-Apptainer container.
