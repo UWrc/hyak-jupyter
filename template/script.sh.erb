@@ -20,6 +20,7 @@ nvflag="--nv"
 # Launch the Jupyter Notebook Server
 set -x
 <%- if context.module == "true" -%>
+	export LMOD_CACHED_LOADS=no
 	module load $env
 	jupyter ${ui} --config="${CONFIG_FILE}" ${extra_args}
 <%- else -%>
