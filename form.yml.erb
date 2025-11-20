@@ -89,27 +89,40 @@ attributes:
     min: 0
     max: 8
     value: 0
-  sif:
-    label: Jupyter Container
+  env:
+    label: Server Environment
     widget: select
-    help: Select 'Custom' if you have created your own Jupyter-Apptainer image.
+    help: Select 'Custom Container' if you have created your own Jupyter-Apptainer image.
     options:
     - [
-        "jupyter/minimal-notebook",
+        "Container: minimal-notebook",
         "/mmfs1/sw/ondemand/containers/jupyter/minimal-notebook",
-        data-hide-custom-sif: true
+        data-hide-custom-sif: true,
+        data-set-module: false
       ]
     - [
-        "jupyter/scipy-notebook",
+        "Container: scipy-notebook",
         "/mmfs1/sw/ondemand/containers/jupyter/scipy-notebook",
-        data-hide-custom-sif: true
+        data-hide-custom-sif: true,
+        data-set-module: false
       ]
     - [
-        "jupyter/datascience-notebook",
+        "Container: datascience-notebook",
         "/mmfs1/sw/ondemand/containers/jupyter/datascience-notebook",
-        data-hide-custom-sif: true
-      ]
-    - [ "Custom", "" ]
+        data-hide-custom-sif: true,
+        data-set-module: false
+        ]
+    - [
+        "Custom Container",
+        "",
+        data-set-module: false
+        ]
+    - [
+        "Module: jupyter/minimal",
+        "jupyter/minimal",
+        data-hide-custom-sif: true,
+        data-set-module: true
+        ]
     value: "Default"
   custom_sif:
     label: Full path to your customized Jupyter-Apptainer container.
@@ -122,11 +135,14 @@ attributes:
     - ["Jupyter Lab", "lab" ]
     - ["Jupyter Notebook", "notebook" ]
   extra_jupyter_args: ""
+  module:
+    widget: "hidden_field"
+    value: false
 
 form:
   - haccount
   - hqueue
-  - sif
+  - env
   - custom_sif
   - jupyter_ui
   - extra_jupyter_args
@@ -136,4 +152,5 @@ form:
   - hgputype
   - hgpus
   - bc_num_hours
+  - module
 

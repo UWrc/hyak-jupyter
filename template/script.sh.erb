@@ -9,7 +9,7 @@ cd "${HOME}"
 # Benchmark info
 echo "TIMING - Starting jupyter at: $(date)"
 
-sif="<%= context.sif.blank? ? context.custom_sif : context.sif %>" #path to sif
+env="<%= context.env.blank? ? context.custom_sif : context.env %>"
 ui="<%= context.jupyter_ui %>" #lab or notebook
 extra_args="<%= context.extra_jupyter_args %>" #any extra args provided
 
@@ -19,4 +19,10 @@ nvflag="--nv"
 
 # Launch the Jupyter Notebook Server
 set -x
-apptainer exec ${nvflag} ${sif} jupyter ${ui} --config="${CONFIG_FILE}" ${extra_args}
+<%- if context.module == true -%>
+	module --ignore_cache load $env
+	jupyter ${ui} --config="${CONFIG_FILE}" ${extra_args}
+<%- else -%>
+	apptainer exec ${nvflag} ${env} jupyter ${ui} --config="${CONFIG_FILE}" ${extra_args}
+<%- end -%>
+
